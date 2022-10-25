@@ -4,7 +4,9 @@
 # download_images_and_bboxes.sh
 #
 # Bash script for downloading bounding boxes (annotations) and images
-# for FathomNet data used in "paper"
+# for FathomNet data used in
+#   "Demystifying image-based machine learning: 
+#    a practical guide to automated analysis of imagery using modern machine learning tools"
 #
 # Species:
 #    SQUID and JELLIES
@@ -103,109 +105,97 @@ mkdir -p $YEARS_DIR
 # region 1: < 450 meters
 # region 2: > 450 mmeters
 fathomnet-generate -c "Chiroteuthis calyx" --max-depth 450 \
+ 	 --img-download $REGIONS_DIR/region_1/Chiroteuthis_calyx/images \
 	 --format coco -o $REGIONS_DIR/region_1/Chiroteuthis_calyx
-#	 --img-download $REGIONS_DIR/region_1/Chiroteuthis_calyx/images \
 
 fathomnet-generate -c "Chiroteuthis calyx" --min-depth 451 \
+ 	 --img-download $REGIONS_DIR/region_2/Chiroteuthis_calyx/images \
 	 --format coco -o $REGIONS_DIR/region_2/Chiroteuthis_calyx
-#	 --img-download $REGIONS_DIR/region_2/Chiroteuthis_calyx/images \
 
 # Dosidicus gigas:
 # region 1: > 500 meters depth
 # region 2: < 500 meters depth
 fathomnet-generate -c "Dosidicus gigas" --min-depth 501 \
+ 	--img-download $REGIONS_DIR/region_1/Dosidicus_gigas/images \
 	--format coco -o $REGIONS_DIR/region_1/Dosidicus_gigas
-#	--img-download $REGIONS_DIR/region_1/Dosidicus_gigas/images \
 
 fathomnet-generate -c "Dosidicus gigas" --max-depth 500 \
+ 	--img-download $REGIONS_DIR/region_2/Dosidicus_gigas/images \
 	--format coco -o $REGIONS_DIR/region_2/Dosidicus_gigas
-#	--img-download $REGIONS_DIR/region_2/Dosidicus_gigas/images \
 
 # Gonatus onyx
 # region 1: < 1000 meters depth
 # region 2: > 1000 meters depth
 fathomnet-generate -c "Gonatus onyx" --max-depth 1000 \
+ 	--img-download $REGIONS_DIR/region_1/Gonatus_onyx/images \
 	--format coco -o $REGIONS_DIR/region_1/Gonatus_onyx
-#	--img-download $REGIONS_DIR/region_1/Gonatus_onyx/images \
 
 fathomnet-generate -c "Gonatus onyx" --min-depth 1001 \
+ 	--img-download $REGIONS_DIR/region_2/Gonatus_onyx/images \
 	--format coco -o $REGIONS_DIR/region_2/Gonatus_onyx
-#	--img-download $REGIONS_DIR/region_2/Gonatus_onyx/images \
 
 # Sebastes
 # region 1: < 32 degrees latitude
 # region 2: > 32 degrees latitude
 fathomnet-generate -c "Sebastes"  --max-latitude 32.0 \
+ 	--img-download $REGIONS_DIR/region_1/Sebastes/images \
 	--format coco -o $REGIONS_DIR/region_1/Sebastes
-#	--img-download $REGIONS_DIR/region_1/Sebastes/images \
 
 fathomnet-generate -c "Sebastes"  --min-latitude 32.1 \
+ 	--img-download $REGIONS_DIR/region_2/Sebastes/images \
 	--format coco -o $REGIONS_DIR/region_2/Sebastes
-#	--img-download $REGIONS_DIR/region_2/Sebastes/images \
 
 # Sebastes diploproa, Sebastes melanostomus
 # region 1: < 36 degrees latitude
 # region 2: > 36 degrees latitude
 fathomnet-generate -c "Sebastes diploproa"  --min-latitude 36.0 \
+ 	--img-download $REGIONS_DIR/region_1/Sebastes_diploproa/images \
 	--format coco -o $REGIONS_DIR/region_1/Sebastes_diploproa
-#	--img-download $REGIONS_DIR/region_1/Sebastes_diploproa/images \
 
 fathomnet-generate -c "Sebastes diploproa"  --max-latitude 35.999 \
+ 	--img-download $REGIONS_DIR/region_2/Sebastes_diploproa/images \
 	--format coco -o $REGIONS_DIR/region_2/Sebastes_diploproa
-#	--img-download $REGIONS_DIR/region_2/Sebastes_diploproa/images \
 
 fathomnet-generate -c "Sebastes melanostomus"  --min-latitude 36.0 \
+ 	--img-download $REGIONS_DIR/region_1/Sebastes_melanostomus/images \
 	--format coco -o $REGIONS_DIR/region_1/Sebastes_melanostomus
-#	--img-download $REGIONS_DIR/region_1/Sebastes_melanostomus/images \
 
 fathomnet-generate -c "Sebastes melanostomus"  --max-latitude 35.999 \
+ 	--img-download $REGIONS_DIR/region_2/Sebastes_melanostomus/images \
 	--format coco -o $REGIONS_DIR/region_2/Sebastes_melanostomus
-#	--img-download $REGIONS_DIR/region_2/Sebastes_melanostomus/images \
 
 # Sebastolobus:
 # region 1: < 38 degrees latitude
 # region 2: > 38 degrees latitude
 fathomnet-generate -c "Sebastolobus" --max-latitude 38.0 \
+ 	--img-download $REGIONS_DIR/region_1/Sebastolobus/images \
 	--format coco -o $REGIONS_DIR/region_1/Sebastolobus
-#	--img-download $REGIONS_DIR/region_1/Sebastolobus/images \
 
 fathomnet-generate -c "Sebastolobus" --min-latitude 38.1 \
+ 	--img-download $REGIONS_DIR/region_2/Sebastolobus/images \
 	--format coco -o $REGIONS_DIR/region_2/Sebastolobus
-#	--img-download $REGIONS_DIR/region_2/Sebastolobus/images \
-
-
-#
-# Download Time Pre-2012 and Post-2012 for all species
-TOPDIR="./fish_squid_years"
-SPECIES_LIST=("Chiroteuthis calyx" "Dosidicus gigas" "Gonatus onyx"\
-        "Sebastes" "Sebastes diploproa" "Sebastes melanostomus" "Sebastolobus")
-
-# Create regions partition image and label directories for training needed for YOLOv5
-mkdir -p $REGIONS_DIR/region_1/yolov5/images/{train,val,test}
-mkdir -p $REGIONS_DIR/region_1/yolov5/labels/{train,val,test}
-mkdir -p $REGIONS_DIR/region_2/yolov5/images/{train,val,test}
-mkdir -p $REGIONS_DIR/region_2/yolov5/labels/{train,val,test}
 
 
 # Year Splits
+#
+# Download Time Pre-2012 and Post-2012 for all species
+SPECIES_LIST=("Chiroteuthis calyx" "Dosidicus gigas" "Gonatus onyx"\
+        "Sebastes" "Sebastes diploproa" "Sebastes melanostomus" "Sebastolobus")
+
 
 # Download each species images into their own directory 
-# and annotations for each species in a different file
+# and annotations for each species in a their own file
 for species in "${SPECIES_LIST[@]}"
 do
     # Pre 2012
-#    fathomnet-generate -c "$species" --end '2011-12-31' --img-download  $YEARS_DIR/pre_2012/${species/ /_}/images --format coco -o pre_2012/${species/ /_}
-    fathomnet-generate -c "$species" --end '2011-12-31' --format coco -o $YEARS_DIR/pre_2012/${species/ /_}
+    fathomnet-generate -c "$species" --end '2011-12-31' --img-download  $YEARS_DIR/pre_2012/${species/ /_}/images --format coco -o $YEARS_DIR/pre_2012/${species/ /_}
 
     # Post 2012
-#    fathomnet-generate -c "$species" --start '2012-01-01' --img-download  $YEARS_DIR/post_2012/${species/ /_}/images --format coco -o post_2012/${species/ /_}
-    fathomnet-generate -c "$species" --start '2012-01-01' --format coco -o $YEARS_DIR/post_2012/${species/ /_}
-
+    fathomnet-generate -c "$species" --start '2012-01-01' --img-download  $YEARS_DIR/post_2012/${species/ /_}/images --format coco -o $YEARS_DIR/post_2012/${species/ /_}
 done
 
-# Create image and label directories for each temporal domain for training
-mkdir -p $YEARS_DIR/pre_2012/yolov5/images/{train,val,test}
-mkdir -p $YEARS_DIR/pre_2012/yolov5/labels/{train,val,test}
-mkdir -p $YEARS_DIR/post_2012/yolov5/images/{train,val test}
-mkdir -p $YEARS_DIR/post_2012/yolov5/labels/{train,val,test}
+mkdir -p $REGIONS_DIR/region_1/yolov5
+mkdir -p $REGIONS_DIR/region_2/yolov5
+mkdir -p $YEARS_DIR/pre_2012/yolov5
+mkdir -p $YEARS_DIR/post_2012/yolov5
 

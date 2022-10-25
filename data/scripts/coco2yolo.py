@@ -129,6 +129,6 @@ if __name__ == '__main__':
     else:
         coco_dir = sys.argv[1]
 
-    print('COCO JSON directory ', coco_dir)
+    print('Top directory to look for json files ', coco_dir)
     convert_coco_json(coco_dir)  # directory with *.json
 
