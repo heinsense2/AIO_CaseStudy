@@ -2,7 +2,7 @@
 
 ## A Case Study for Object Detection of Selected Marine Life Species from FathomNet Data
 
-This guide provides code and presents a guideline on how the results presented in the paper:
+This guide provides code and presents a guideline on how results presented in the paper:
 
 *Demystifying image-based machine learning: a practical guide to automated analysis of imagery using modern machine learning tools*
 
@@ -16,6 +16,9 @@ Python >= 3.7 is required.
 ### Create Dataset ###
 
 YOLOv5 requires labeled data to learn the object classes. Data for this case study is prepared manually by downloading the different species from the FathomNet data.
+
+<details open>
+<summary>Download data</summary>
 
 `download_images_and_bboxes.sh` is a bash script to download images and bounding boxes for the species selected. It requires `fathomnet.py`, which can be installed via
 
@@ -46,6 +49,10 @@ source download_images_and_bboxes.sh
 
 The data will be downloaded to directory `data` in the directory where the script is run.
 The directory structure for the data will be look like [this](https://htmlpreview.github.io/?https://raw.githubusercontent.com/heinsense2/AIO_CaseStudy/main/data/html/data_directory_splits.html?token=GHSAT0AAAAAABZVUOBRK7V7RWRPWD2SWULCY224ZZQ).
+</details>
+
+<details open>
+<summary>Annotations</summary>
 
 Data annotations are provided in COCO format. To convert COCO json files to YOLO format, use `coco2yolo.py`.
 
@@ -59,6 +66,9 @@ To convert all the COCO json files in `data`:
 ```bash
 python3 coco2yolo.py .../user/data
 ```
+</details>
+<details open>
+<summary>Prepare data for training</summary>
 
 [`prepare_data_for_training.py`](https://github.com/heinsense2/AIO_CaseStudy/blob/main/data/scripts/prepare_data_for_training.py) is a Python script that prepares tha data for trainimg. The script will split data for each species into train, val, and test directories, create an out-of-domain dataset consisting of all the images, produce the yaml files required and store everything in the appropriate domain directories.
 
@@ -84,11 +94,14 @@ The images and labels directories for training will be created in
  ```
        …/user/data/pre_2012/yolov5/<pre_2012.yaml,pre_2012_as_out_of_domain.yaml>
  ```
-
+</details>
 
 ### Train ###
 For this case study, we use YOLOv5. For information, requirements, installation and examples,
 see  [YOLOv5](https://github.com/ultralytics/yolov5).
+
+<details open>
+<summary>Train</summary>
 
 To train a YOLOv5 model with our datasets, run the command 
 ```bash
@@ -98,10 +111,38 @@ python3 train.py --img 640 --batch 16 --epochs 300 --data <data.yaml> --weights 
 Training results are saved to `runs/train` with incrementing directories, i.e. `runs/train/exp2`, `runs/train/exp3`, etc.
 Adding `--name <some_name>` to train.py will save training results in `runs/train/some_name`, `runs/train/some_name2`, etc.
 
-### Next Steps ###
-Once the model is trained, use the best.pt weights to
-* validate accuracy on train, val and test splits
-* detect objects in test or out of doamin splits
+</details>
+
+### Evaluate Detector Performance ###
+Once the model is trained, use the best.pt weights to validate accuracy on test data
+<details open>
+<summary>Validate</summary>
+
+To validate a YOLOv5 model with our datasets, run the command 
+
+```bash
+python3 val.py --data {data.directory}/{domain}.yaml --weights runs/train/exp/weights/best.pt --task test
+```
+To validate the out-of-domain data, refer to the yaml file in the different domain the out-of-domain data.
+For example, if training was done on pre_2012 data, the out-of-domain yaml file will be in the post_2012 directory.
+
+```bash
+python3 val.py --data {data.directory}/{domain}_as_out_of_domain.yaml --weights runs/train/exp/weights/best.pt --task test
+```
+
+</details>
+
+### Inference ###
+Use detect.py to run inference on test and out of domain images.
+
+<details open>
+<summary>Inference</summary>
+
+```bash
+python detect.py --weights runs/train/exp/weights/best.pt --img 640 --conf 0.65 --source {dataset.location}/test/images
+```
+
+</details>
 
 A [Google Colab Notebook](https://github.com/heinsense2/AIO_CaseStudy/blob/main/notebooks/Training_on_FathomNet_Custom_Data.ipynb) is provided as an example on how to run the train, validation and detection pipeline.
  
