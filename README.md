@@ -45,7 +45,7 @@ source download_images_and_bboxes.sh
 ```
 
 The data will be downloaded to directory `data` in the directory where the script is run.
-The directory structure for the data will be look like [this](https://github.com/heinsense2/AIO_CaseStudy/tree/main/data/html/data_directory_splits.html)
+The directory structure for the data will be look like [this](https://htmlpreview.github.io/?https://raw.githubusercontent.com/heinsense2/AIO_CaseStudy/main/data/html/data_directory_splits.html?token=GHSAT0AAAAAABZVUOBQF6A6VFMMPTVQFIGEY224JRAC).
 
 Data annotations are provided in COCO format. To convert COCO json files to YOLO format, use `coco2yolo.py`.
 
@@ -69,7 +69,7 @@ downloaded images and labels are found in
     …/user/data/pre_2012/species/<images,labels>
 ```
        
-`prepare_data_for_training` will produce the [following](https://github.com/heinsense2/AIO_CaseStudy/tree/main/data/html/yolov5_dirs.html):
+`prepare_data_for_training` will produce the [following](https://htmlpreview.github.io/?https://raw.githubusercontent.com/mi2celis/Example/master/html/yolov5_dirs.html?token=GHSAT0AAAAAABZVUOBQSYEKF5G5UHKEPA2UY224DPA).
 
 The images and labels directories for training will be created in
 ```
