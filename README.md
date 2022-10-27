@@ -2,11 +2,13 @@
 
 ## A Case Study for Object Detection of Selected Marine Life Species from FathomNet Data
 
-This guide provides code and explains how to obtain the results presented in the paper:
+This guide provides code and presents a guideline on how the results presented in the paper:
 
 *Demystifying image-based machine learning: a practical guide to automated analysis of imagery using modern machine learning tools*
 
-The code includes bash shell and Python scripts and makes use of `fathomnet-py and YOLOv5`. These scripts are known to run on and have been tested on Ubuntu 18.04 LTS and 20.04 LTS.  
+were obtained.
+
+The code includes bash shell and Python scripts and makes use of [`fathomnet-py`](https://github.com/fathomnet/fathomnet-py) and [`YOLOv5`](https://github.com/ultralytics/yolov5). These scripts are known to run on and have been tested on Ubuntu 18.04 LTS and 20.04 LTS.  
 Python >= 3.7 is required.
 
 ## Train on FathomNet Dataset ##
@@ -31,19 +33,19 @@ The species selected are:
 * Sebastes diploproa
 * Sebastes melanostomus
 * Sebastolobus
+* Nanomia bijuga
 
 For training and detection purposes, Sebastes, Sebastes diploproa and Sebastes melanostomus are grouped as a single Sebastes class due to the small number of images for the two latter species.
+Nanomia bijuga is used only as a distractor class in a separate experiment.
 
-`download_images_and_bboxes.sh` will download the data into different spatial/depth regions and
-different temporal regions.
+`download_images_and_bboxes.sh` will download the data into the different spatial/depth regions and temporal regions. Nanomia bijuga is downloaded using a different script.
 
 ```bash
 source download_images_and_bboxes.sh
 ```
 
-The data will be downloaded to directory `data` where the script was run and the directory structure for the data will be 
-
-- [ ] add link to directory structures
+The data will be downloaded to directory `data` in the directory where the script is run.
+The directory structure for the data will be look like [this](https://github.com/heinsense2/AIO_CaseStudy/tree/main/data/html/data_directory_splits.html)
 
 Data annotations are provided in COCO format. To convert COCO json files to YOLO format, use `coco2yolo.py`.
 
