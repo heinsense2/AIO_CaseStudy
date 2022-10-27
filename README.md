@@ -38,7 +38,7 @@ The species selected are:
 For training and detection purposes, Sebastes, Sebastes diploproa and Sebastes melanostomus are grouped as a single Sebastes class due to the small number of images for the two latter species.
 Nanomia bijuga is used only as a distractor class in a separate experiment.
 
-`download_images_and_bboxes.sh` will download the data into the different spatial/depth regions and temporal regions. Nanomia bijuga is downloaded using a different script.
+[`download_images_and_bboxes.sh`](https://github.com/heinsense2/AIO_CaseStudy/blob/main/data/scripts/download_images_and_bboxes.sh)  will download the data into the different spatial/depth regions and temporal regions. Nanomia bijuga is downloaded separetely.
 
 ```bash
 source download_images_and_bboxes.sh
@@ -60,21 +60,35 @@ To convert all the COCO json files in `data`:
 python3 coco2yolo.py .../user/data
 ```
 
-`split_data_for_training.py` is a Python script that will split data for each species into
-train, val, and test directories and store in the appropriate domain directories.
+[`prepare_data_for_training.py`](https://github.com/heinsense2/AIO_CaseStudy/blob/main/data/scripts/prepare_data_for_training.py) is a Python script that prepares tha data for trainimg. The script will split data for each species into train, val, and test directories, create an out-of-domain dataset consisting of all the images, produce the yaml files required and store everything in the appropriate domain directories.
 
 For example:
-downloaded images and labels are found in
-       …/user/data/pre_2012/species/<images,labels>
-The images and labels directories for training will be created in
-       …/user/data/pre_2012/images/<train,val,test>
-    …/user/data/pre_2012/labels/<train,val,test>
 
-- [ ] add or describe script for producing yaml file
+downloaded images and labels are found in
+```
+    …/user/data/pre_2012/species/<images,labels>
+```
+       
+`prepare_data_for_training` will produce the [following](https://github.com/heinsense2/AIO_CaseStudy/tree/main/data/html/yolov5_dirs.html):
+
+The images and labels directories for training will be created in
+```
+    …/user/data/pre_2012/yolov5/images/<train,val,test>
+    …/user/data/pre_2012/yolov5/labels/<train,val,test>
+ ```
+ The out of domain dataset can be found in
+ ```
+       …/user/data/pre_2012/yolov5/all/<images,labels>
+ ```
+ and the yaml files will be:
+ ```
+       …/user/data/pre_2012/yolov5/<pre_2012.yaml,pre_2012_as_out_of_domain.yaml>
+ ```
+
 
 ### Train ###
 For this case study, we use YOLOv5. For information, requirements, installation and examples,
-see  [YOLOv5](https://github.com/ultralytics/yolov5)
+see  [YOLOv5](https://github.com/ultralytics/yolov5).
 
 To train a YOLOv5 model with our datasets, run the command 
 ```bash
@@ -89,5 +103,5 @@ Once the model is trained, use the best.pt weights to
 * validate accuracy on train, val and test splits
 * detect objects in test or out of doamin splits
 
-A YOLOv5 Notebook is provided as an example on how to run the train, validation and detection pipeline.
-- [ ] add link to Colab Notebook 
+A [Google Colab Notebook](https://github.com/heinsense2/AIO_CaseStudy/blob/main/notebooks/Training_on_FathomNet_Custom_Data.ipynb) is provided as an example on how to run the train, validation and detection pipeline.
+ 
