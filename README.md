@@ -17,7 +17,7 @@ Python >= 3.7 is required.
 
 YOLOv5 requires labeled data to learn the object classes. Data for this case study is prepared manually by downloading the different species from the FathomNet data.
 
-<details open>
+<details>
 <summary>Download data</summary>
 
 `download_images_and_bboxes.sh` is a bash script to download images and bounding boxes for the species selected. It requires `fathomnet.py`, which can be installed via
@@ -48,10 +48,16 @@ source download_images_and_bboxes.sh
 ```
 
 The data will be downloaded to directory `data` in the directory where the script is run.
-The directory structure for the data will be look like [this](https://htmlpreview.github.io/?https://raw.githubusercontent.com/heinsense2/AIO_CaseStudy/main/data/html/data_directory_splits.html?token=GHSAT0AAAAAABZVUOBRK7V7RWRPWD2SWULCY224ZZQ).
+<details>
+   <summary>Data Directories</summary> 
+    <p>
+  <img src="data/images/data_dirs.png" width="200" title="data directories">
+   </p>
+ </details>  
+  
 </details>
 
-<details open>
+<details>
 <summary>Annotations</summary>
 
 Data annotations are provided in COCO format. To convert COCO json files to YOLO format, use `coco2yolo.py`.
@@ -67,7 +73,7 @@ To convert all the COCO json files in `data`:
 python3 coco2yolo.py .../user/data
 ```
 </details>
-<details open>
+<details>
 <summary>Prepare data for training</summary>
 
 [`prepare_data_for_training.py`](https://github.com/heinsense2/AIO_CaseStudy/blob/main/data/scripts/prepare_data_for_training.py) is a Python script that prepares tha data for trainimg. The script will split data for each species into train, val, and test directories, create an out-of-domain dataset consisting of all the images, produce the yaml files required and store everything in the appropriate domain directories.
@@ -79,7 +85,7 @@ downloaded images and labels are found in
     …/user/data/pre_2012/species/<images,labels>
 ```
        
-`prepare_data_for_training` will produce the [following](https://htmlpreview.github.io/?https://raw.githubusercontent.com/heinsense2/AIO_CaseStudy/main/data/html/yolov5_dirs.html?token=GHSAT0AAAAAABZVUOBQ7UD5SNUOLGTXG3JSY224XTA).
+`prepare_data_for_training` will produce the [following].
 
 The images and labels directories for training will be created in
 ```
@@ -94,13 +100,20 @@ The images and labels directories for training will be created in
  ```
        …/user/data/pre_2012/yolov5/<pre_2012.yaml,pre_2012_as_out_of_domain.yaml>
  ```
+   <details open>
+   <summary>Training Directories</summary> 
+    <p>
+      <img src="data/images/yolov5_dirs.png" width="400" title="training directories">
+    </p>
+   </details>  
+    
 </details>
 
 ### Train ###
 For this case study, we use YOLOv5. For information, requirements, installation and examples,
 see  [YOLOv5](https://github.com/ultralytics/yolov5).
 
-<details open>
+<details>
 <summary>Train</summary>
 
 To train a YOLOv5 model with our datasets, run the command 
@@ -115,7 +128,7 @@ Adding `--name <some_name>` to train.py will save training results in `runs/trai
 
 ### Evaluate Detector Performance ###
 Once the model is trained, use the best.pt weights to validate accuracy on test data
-<details open>
+<details>
 <summary>Validate</summary>
 
 To validate a YOLOv5 model with our datasets, run the command 
@@ -135,7 +148,7 @@ python3 val.py --data {data.directory}/{domain}_as_out_of_domain.yaml --weights 
 ### Inference ###
 Use detect.py to run inference on test and out of domain images.
 
-<details open>
+<details>
 <summary>Inference</summary>
 
 ```bash
