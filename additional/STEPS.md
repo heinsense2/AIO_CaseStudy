@@ -35,7 +35,7 @@ python detect.py --weights runs/train/exp/weights/best.pt --img 1280 --conf 0.65
 ```
 
 
-### <a id="background_images"><\a> Background Images
+### <a id="background_images"></a> Background Images
 
 Background images are images with no objects that are added to a dataset to reduce False Positives (FP). No labels are required for background images.
 To train with background images, these images need to be added to the images/train data.
@@ -43,7 +43,7 @@ To train with background images, these images need to be added to the images/tra
 A [Google Colab notebook](notebooks/athomnet_background_imgs.ipynb) is provided that illustrates a way to find and download background images.
 
 
-### <a id="class_coarsening"><\a> Class Coarsening
+### <a id="class_coarsening"></a> Class Coarsening
 
 Training with a superclass requires the object class in the labels be modified.
 For our experiment, we used simple sed scripts to modify the labels, so:
@@ -60,7 +60,7 @@ names: ['squid', 'fish']
 ```
 
 
-### <a id="distractor_classes"><\a> Training With Distractor Classes
+### <a id="distractor_classes"></a> Training With Distractor Classes
 
 The dataset for training with distractor classes requires downloading the Nanomia bijuga.
 This can be accomplished by the bash command:
