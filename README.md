@@ -159,3 +159,18 @@ python detect.py --weights runs/train/exp/weights/best.pt --img 640 --conf 0.65 
 
 A [Google Colab Notebook](https://github.com/heinsense2/AIO_CaseStudy/blob/main/notebooks/Training_on_FathomNet_Custom_Data.ipynb) is provided as an example on how to run the train, validation and detection pipeline.
  
+
+
+### Additional Steps ###
+
+<details>
+<summary>Additional Steps</summary>
+
+- [Image Augmentation](additional/STEPS.md#image_augmentation)
+- [Image Resolution](additional/STEPS.md#image_resolution)
+- [Train with Background Images](additional/STEPS.md#background_images)
+- [Class Coarsening](additional/STEPS.md#class_coarsening)
+- [Training with Distractor Classes](additional/STEPS.md#distractor_class)
+
+</details>
+
