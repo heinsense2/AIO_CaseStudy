@@ -60,7 +60,7 @@ names: ['squid', 'fish']
 ```
 
 
-### <a id="distractor_classes"></a> Training With Distractor Classes
+### <a id="distractor_class"></a> Training With Distractor Classes
 
 The dataset for training with distractor classes requires downloading the Nanomia bijuga.
 This can be accomplished by the bash command:
