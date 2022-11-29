@@ -60,7 +60,7 @@ The data will be downloaded to directory `data` in the directory where the scrip
 <details>
 <summary>Annotations</summary>
 
-Data annotations are provided in COCO format. To convert COCO json files to YOLO format, use `coco2yolo.py`.
+Data annotations are downloaded in COCO format. To convert COCO json files to YOLO format, use [`coco2yolo.py`](data/scripts/coco2yolo.py).
 
 ```bash
 python3 coco2yolo.py path/to/coco/json/files
@@ -76,7 +76,7 @@ python3 coco2yolo.py .../user/data
 <details>
 <summary>Prepare data for training</summary>
 
-[`prepare_data_for_training.py`](https://github.com/heinsense2/AIO_CaseStudy/blob/main/data/scripts/prepare_data_for_training.py) is a Python script that prepares tha data for trainimg. The script will split data for each species into train, val, and test directories, create an out-of-domain dataset consisting of all the images, produce the yaml files required and store everything in the appropriate domain directories.
+[`prepare_data_for_training.py`](data/scripts/prepare_data_for_training.py) is a Python script that prepares the data for training. The script will split data for each species into train, val, and test directories, create an out-of-domain dataset consisting of all the images, produce the yaml files required and store everything in the appropriate domain directories.
 
 For example:
 
@@ -98,7 +98,8 @@ The images and labels directories for training will be created in
  ```
  and the yaml files will be:
  ```
-       …/user/data/pre_2012/yolov5/<pre_2012.yaml,pre_2012_as_out_of_domain.yaml>
+       …/user/data/pre_2012/yolov5/pre_2012.yaml
+       …/user/data/pre_2012/yolov5/pre_2012_as_out_of_domain.yaml
  ```
    <details open>
    <summary>Training Directories</summary> 
