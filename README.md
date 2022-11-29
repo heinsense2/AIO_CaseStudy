@@ -20,7 +20,7 @@ YOLOv5 requires labeled data to learn the object classes. Data for this case stu
 <details>
 <summary>Download data</summary>
 
-`download_images_and_bboxes.sh` is a bash script to download images and bounding boxes for the species selected. It requires `fathomnet.py`, which can be installed via
+[`download_images_and_bboxes.sh`](data/scripts/download_images_and_bboxes.sh) is a bash script to download images and bounding boxes for the species selected. It requires `fathomnet.py`, which can be installed via
 
 ```bash
 python -m pip install fathomnet
@@ -41,7 +41,7 @@ The species selected are:
 For training and detection purposes, Sebastes, Sebastes diploproa and Sebastes melanostomus are grouped as a single Sebastes class due to the small number of images for the two latter species.
 Nanomia bijuga is used only as a distractor class in a separate experiment.
 
-[`download_images_and_bboxes.sh`](https://github.com/heinsense2/AIO_CaseStudy/blob/main/data/scripts/download_images_and_bboxes.sh)  will download the data into the different spatial/depth regions and temporal regions. Nanomia bijuga is downloaded separetely.
+[`download_images_and_bboxes.sh`](data/scripts/download_images_and_bboxes.sh)  will download the data into the different spatial/depth regions and temporal regions. Nanomia bijuga is downloaded separetely.
 
 ```bash
 source download_images_and_bboxes.sh
@@ -80,12 +80,12 @@ python3 coco2yolo.py .../user/data
 
 For example:
 
-downloaded images and labels are found in
+if downloaded images and labels are found in
 ```
     …/user/data/pre_2012/species/<images,labels>
 ```
        
-`prepare_data_for_training` will produce the [following].
+`prepare_data_for_training` will produce the [following](data/images/yolov5_dirs.png) in a separate yolov5 directory.
 
 The images and labels directories for training will be created in
 ```
@@ -117,7 +117,7 @@ see  [YOLOv5](https://github.com/ultralytics/yolov5).
 <details>
 <summary>Train</summary>
 
-To train a YOLOv5 model with our datasets, run the command 
+To train a YOLOv5 model with our datasets, the command in general is
 ```bash
 python3 train.py --img 640 --batch 16 --epochs 300 --data <data.yaml> --weights yolov5s.pt --cache
 ```
@@ -132,7 +132,7 @@ Once the model is trained, use the best.pt weights to validate accuracy on test 
 <details>
 <summary>Validate</summary>
 
-To validate a YOLOv5 model with our datasets, run the command 
+To validate a YOLOv5 model with our datasets, the command would look like
 
 ```bash
 python3 val.py --data {data.directory}/{domain}.yaml --weights runs/train/exp/weights/best.pt --task test
