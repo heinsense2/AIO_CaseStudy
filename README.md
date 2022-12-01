@@ -6,7 +6,7 @@ This guide provides code and presents a guideline on how results presented in th
 
 *Demystifying image-based machine learning: a practical guide to automated analysis of imagery using modern machine learning tools*
 
-were obtained.
+were obtained. It is by no means a step by step instruction manual.
 
 The code includes bash shell and Python scripts and makes use of [`fathomnet-py`](https://github.com/fathomnet/fathomnet-py) and [`YOLOv5`](https://github.com/ultralytics/yolov5). These scripts are known to run on and have been tested on Ubuntu 18.04 LTS and 20.04 LTS.  
 Python >= 3.7 is required.
