@@ -7,6 +7,9 @@ Details can be found in the YOLOv5 documentation under [Augmentation](https://do
 To test different augmentations, use a hyperparameter file (default data/hyp.scratch.yaml).
 Modifications were made to a copy of the default hyperparameter file. 
 
+Many combinations can be done with the different augmentations. For our purposes, augmentations were divided in [three categories](../data/images/augmentations.png).
+
+
 Training with different augmentations were tried:
 
 * no augmentations
@@ -23,7 +26,7 @@ python train.py --hyp <my_hyp.yaml> --img 640 --batch 16 --epochs 300 --data <da
 
 ### <a id="image_resolution"></a> Image Resolution
 
-Training was done at COCO's native resolution of `--img 640`. Due to the amount of small objects in the dataset, training could benefit by using a higher resolution such as `--img 1280`. Best inference results are obtained at the same `--img` as the training was run at. If you train at `--img 1280` you should also test and detect at `--img 1280`.
+Training was done at COCO's native resolution of `--img 640`. Due to the amount of small objects in the dataset, training could benefit by using a higher resolution such as `--img 1280`. Best inference results are obtained using the same value for `--img` as the training was run with. If you train with `--img 1280` you should also validate and run inference with `--img 1280`.
 
 
 ```bash
