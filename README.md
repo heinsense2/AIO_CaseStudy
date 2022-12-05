@@ -1,12 +1,12 @@
 # AIO CaseStudy
 
-## A Case Study for Object Detection of Selected Marine Life Species from FathomNet Data
+## A Case Study for Object Detection of Selected Marine Species from FathomNet Data
 
 This guide provides code and presents a guideline on how results presented in the paper:
 
 *Demystifying image-based machine learning: a practical guide to automated analysis of imagery using modern machine learning tools*
 
-were obtained. It is by no means a step by step instruction manual.
+were obtained.
 
 The code includes bash shell and Python scripts and makes use of [`fathomnet-py`](https://github.com/fathomnet/fathomnet-py) and [`YOLOv5`](https://github.com/ultralytics/yolov5). These scripts are known to run on and have been tested on Ubuntu 18.04 LTS and 20.04 LTS.  
 Python >= 3.7 is required.
@@ -15,7 +15,7 @@ Python >= 3.7 is required.
 
 ### Create Dataset ###
 
-YOLOv5 requires labeled data to learn the object classes. Data for this case study is prepared manually by downloading the different species from the FathomNet data.
+YOLOv5 requires labeled data to learn the object classes. The dataset for this case study is built from imagery and object labels housed in the FathomNet database. The following steps describe how to build the case study dataset from images and labels in FathomNet.
 
 <details>
 <summary>Download data</summary>
@@ -28,7 +28,7 @@ python -m pip install fathomnet
 
 Details about fathomnet.py and its requirements can be found [here](https://github.com/fathomnet/fathomnet-py)
 
-The species selected are:
+The classes used in the case study are:
 * Chiroteuthis calyx
 * Dosidicus gigas
 * Gonatus onyx
@@ -39,7 +39,7 @@ The species selected are:
 * Nanomia bijuga
 
 For training and detection purposes, Sebastes, Sebastes diploproa and Sebastes melanostomus are grouped as a single Sebastes class due to the small number of images for the two latter species.
-Nanomia bijuga is used only as a distractor class in a separate experiment.
+Nanomia bijuga is used only as a distractor class in a separate analysis.
 
 [`download_images_and_bboxes.sh`](data/scripts/download_images_and_bboxes.sh)  will download the data into the different spatial/depth regions and temporal regions. Nanomia bijuga is downloaded separetely.
 
