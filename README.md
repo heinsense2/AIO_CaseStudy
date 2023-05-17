@@ -8,8 +8,10 @@ This guide provides code and presents a guideline on how results presented in th
 
 were obtained.
 
-The code includes bash shell and Python scripts and makes use of [`fathomnet-py`](https://github.com/fathomnet/fathomnet-py) and [`YOLOv5`](https://github.com/ultralytics/yolov5). These scripts are known to run on and have been tested on Ubuntu 18.04 LTS and 20.04 LTS.  
-Python >= 3.7 is required.
+The code includes bash shell and Python scripts and makes use of [`fathomnet-py`](https://github.com/fathomnet/fathomnet-py) and [`YOLOv5`](https://github.com/ultralytics/yolov5). [`Python >= 3.7`](https://www.python.org/downloads/) is required.
+
+Scripts for creating the dataset and training the model were mainly run and tested on in-house hardware using systems running Ubuntu 18.04LTS and 20.04LTS. One system with four NVIDIA GeForce RTX 2080 GPUs, each GPU with 12 MB of memory, and 24 Intel Core i9 CPUs. The second one with one NVIDIA GPU GeForce RTX 2070 with 12 MB of memory, and 12 Intel Core i7 CPUs. For training, systems with GPUs are highly recommended. Training run on only CPUs can take a very long time. Some training was also run on [`Google Colab`](https://colab.research.google.com/), where standard GPUs are typically NVIDIA K80 and T4 Tensor Core CPUs. 
+
 
 ## Train on FathomNet Dataset ##
 
